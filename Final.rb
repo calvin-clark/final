@@ -1,17 +1,18 @@
+# Takes user input and produces grade info dependent on final exam
 def main
     puts("Current Class Grade (0.0-100.0):")
     begin
         current = Float(STDIN.gets())
         if current < 0 or current > 100
-            raise 'Invalid Input'
+            raise 'Invalid Input' # create an exception, as grades should always be between 0 and 100
         end
         puts("Final Percentage in Class Grade (0.0-100.0):")
         final = Float(STDIN.gets())
         if final < 0 or final > 100
             raise 'Invalid Input'
         end
-        rest = 100 - final
-        rest_grade = rest * current/100
+        rest = 100 - final # percentage of grade not determined by final exam
+        rest_grade = rest * current/100 # current grade, weighted to account for final exam
         perfect_rest = rest_grade + final
         puts("Overall percentage required to pass (0.0-100.0):")
         overall = Float(STDIN.gets())
@@ -24,13 +25,14 @@ def main
         if min_final <= 0 
             puts("You can pass with a 0 on the final!")
         elsif min_final > 100
-            puts("You cannot pass, RIP you")
+            puts("You cannot pass, RIP you") # An attempt at comedy to help people who are going to fail feel better
         else
             puts("Minimum final grade to pass is #{min_final}")
         end
     rescue
         puts("Invalid values, please input a number between 0 and 100.")
-        main
+        main # restart the main method in an attempt to recieve proper values
     end
 end
+
 main
