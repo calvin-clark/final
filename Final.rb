@@ -1,10 +1,15 @@
-# Takes user input and produces grade info dependent on final exam
+# Final: Takes user input and produces grade info dependent on final exam
+
+# Checks to ensure that user input is a number between 0 and 100, raises exception otherwise
+# Params:
+# +input+:: a user input string to be tested
 def check_input(input)
     if input < 0 or input > 100
             raise 'Invalid Input' # create an exception, as grades should always be between 0 and 100
     end
 end
 
+# Prompts the user for current grade info, displays final grade data based on possible exam scores
 def main
     puts("Current Class Grade (0.0-100.0):")
     begin
@@ -29,7 +34,7 @@ def main
         else
             puts("Minimum final grade to pass is #{min_final}")
         end
-    rescue
+    rescue 
         puts("Invalid values, please input a number between 0 and 100.")
         main # restart the main method in an attempt to recieve proper values
     end
