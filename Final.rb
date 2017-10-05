@@ -1,24 +1,24 @@
 # Takes user input and produces grade info dependent on final exam
+def check_input(input)
+    if input < 0 or input > 100
+            raise 'Invalid Input' # create an exception, as grades should always be between 0 and 100
+    end
+end
+
 def main
     puts("Current Class Grade (0.0-100.0):")
     begin
         current = Float(STDIN.gets())
-        if current < 0 or current > 100
-            raise 'Invalid Input' # create an exception, as grades should always be between 0 and 100
-        end
+        check_input(current)
         puts("Final Percentage in Class Grade (0.0-100.0):")
         final = Float(STDIN.gets())
-        if final < 0 or final > 100
-            raise 'Invalid Input'
-        end
+        check_input(final)
         rest = 100 - final # percentage of grade not determined by final exam
         rest_grade = rest * current/100 # current grade, weighted to account for final exam
         perfect_rest = rest_grade + final
         puts("Overall percentage required to pass (0.0-100.0):")
         overall = Float(STDIN.gets())
-        if overall < 0 or overall > 100
-            raise 'Invalid Input'
-        end
+        check_input(overall)
         puts("If you did not take the final, your grade would be #{rest_grade}")
         puts("With a perfect score on the final, your grade would be #{perfect_rest}")
         min_final = (overall-rest_grade)*100/final
